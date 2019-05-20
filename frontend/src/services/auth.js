@@ -27,6 +27,7 @@ class AuthService {
   };
 
    logout = () => {
+     localStorage.removeItem('user')
      return (
        this.service
        .get('/logout')

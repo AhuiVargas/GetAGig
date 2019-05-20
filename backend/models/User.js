@@ -8,7 +8,10 @@ const userSchema = new mongoose.Schema(
     picture: String,
     description: String,
     rating: Number,
-    tags: String,
+    tag: {
+      type:String,
+      enum: ['progressive', 'trance', 'techno', 'house']
+    },
     role: {
       type: String,
       enum: ["Artist", "Employer"],
