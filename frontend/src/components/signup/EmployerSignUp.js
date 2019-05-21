@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class ArtistInbox extends Component {
+export default class EmployerSignUp extends Component {
   render() {
     return (
       <div>

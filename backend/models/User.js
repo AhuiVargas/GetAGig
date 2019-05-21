@@ -9,8 +9,8 @@ const userSchema = new mongoose.Schema(
     description: String,
     rating: Number,
     tag: {
-      type:String,
-      enum: ['progressive', 'trance', 'techno', 'house']
+      type: String,
+      enum: ["DJ", "Band"]
     },
     role: {
       type: String,
@@ -21,8 +21,10 @@ const userSchema = new mongoose.Schema(
       gmail: String,
       facebook: String
     },
-    Invitations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Invitation" }],
-    mixcloud: ""
+    // Invitations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Invitation" }],
+    invitations: Array,
+    mixcloud: String,
+    youtube: String
   },
   {
     timestamps: true,

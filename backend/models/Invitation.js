@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
 
-const invitationSchema = new Mongoose.Schema(
+const invitationSchema = new mongoose.Schema(
   {
-    title: String,
+    artistLiked: String,
+    likedBy: String,
     description: String,
     contact: String
   }

@@ -4,17 +4,23 @@ import Home from "./components/home/Home";
 import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
 import LayoutThing from "./components/layout/Header";
-import FooterThing from "./components/layout/Footer";
+//import FooterThing from "./components/layout/Footer";
 import Artist from "./components/artist/Artist";
 import Edit from "./components/artist/ArtistEdit";
 import Inbox from "./components/artist/ArtistInbox";
 import ViewAll from "./components/artist/ViewAll";
+import PreSignUp from "./components/signup/PreSignUp";
+import ArtistSignUp from "./components/signup/ArtistSignUp"
+import EmployerSignUp from "./components/signup/EmployerSignUp"
 
 const Router = () => (
   <>
     <LayoutThing />
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route path="/pre-signup" component={PreSignUp} />
+      <Route path="/artist-signup" component={ArtistSignUp} />
+      <Route path="/employer-signup" component={EmployerSignUp} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/login" component={Login} />
       <Route path="/profile" component={Artist} />
@@ -23,7 +29,6 @@ const Router = () => (
       <Route path="/view-all" component={ViewAll} />
       <Route component={() => <p>404</p>} />
     </Switch>
-    <FooterThing />
   </>
 );
 

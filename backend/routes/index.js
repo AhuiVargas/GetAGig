@@ -2,12 +2,23 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const passport = require("../handlers/passport");
+const invitation = require("../models/Invitation")
 
 router.get("/get-artists", (req, res, next) => {
   User.find({ role: "Artist" })
     .then(users => res.json(users))
     .catch(err => res.status(500).json(err));
 });
+
+router.post('/invitation', (req, res) => {
+  let employerEmail = req.body.employerEmail
+  let artistEmail = req.body.artistEmail
+  User.update(
+    {email: employerEmail},
+    {$push: {invitedArtists: artistEmail}}
+  )
+})
+
 
 router.post("/signup", (req, res, next) => {
   console.log(req.body);
@@ -37,11 +48,16 @@ router.get("/artist/:id", (req, res, next) => {
     .catch(err => res.json(err));
 });
 
+//router.get("/logout", (req, res) => {
+//  req.session.destroy(function(err) {
+//    res.redirect("/login");
+//  });
+//});
+
 router.get("/logout", (req, res) => {
-  req.session.destroy(function(err) {
-    res.redirect("/login");
-  });
-});
+  req.logout()
+  res.json({ message: 'You are logged out' })
+})
 
 function isLogged(req, res, next) {
   if (!req.isAuthenticated())
