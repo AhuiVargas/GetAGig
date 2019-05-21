@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ReactPlayer from "react-player";
 
 class ViewAll extends Component {
   state = {
@@ -20,14 +21,17 @@ class ViewAll extends Component {
     return (
       <div>
         {this.state.artists.map((artist, i) => {
-          return <iframe title="mixcloud-link">{artist.mixcloud}</iframe>;
+          return  <>
+          
+          <h1>{artist.name}</h1> 
+          <ReactPlayer url={artist.mixcloud} playing />;
+          </>
+          
+          
         })}
 
         <div>
-          
         </div>
-
-      
       </div>
     );
   }
