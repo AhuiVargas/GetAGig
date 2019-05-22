@@ -1,6 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
+import {withRouter} from 'react-router-dom'
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
@@ -8,7 +9,8 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log(values)
-         return this.props.handleSubmit(values)
+        this.props.handleSubmit(values)
+        return this.props.history.push('/view-all')
       }
     });
   };
@@ -39,7 +41,7 @@ class NormalLoginForm extends React.Component {
           )}
         </Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
+            Login
         </Button>
         <Form.Item>
           {getFieldDecorator("remember", {
@@ -55,4 +57,4 @@ class NormalLoginForm extends React.Component {
 const WrappedNormalLoginForm = Form.create({ name: "normal_login" })(
   NormalLoginForm
 );
-export default WrappedNormalLoginForm;
+export default withRouter(WrappedNormalLoginForm);

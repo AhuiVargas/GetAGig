@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const passport = require("../handlers/passport");
-const Invitation = require("../models/Invitation")
+const Invitation = require("../models/Invitation");
 
 const { ObjectId } = require("mongoose").Types;
-
 
 router.get("/get-artists", (req, res, next) => {
   User.find({ role: "Artist" })
@@ -13,40 +12,40 @@ router.get("/get-artists", (req, res, next) => {
     .catch(err => res.status(500).json(err));
 });
 
- router.post('/artist-inbox', (req, res) => {
-   let employerEmail = req.body.employerEmail
-   let artistEmail = req.body.artistEmail
-   User.update(
-     {email: employerEmail},
-     {$push: {invitedArtists: artistEmail}}
-   )
- })
+router.get("/artist-inbox", (req, res, next) => {
+  Invitation.find(req.user._id)
+    .then(invites => res.json(invites))
+    .catch(err => next(err));
+});
 
+//  router.post('/artist-inbox', (req, res) => {
+//    let employerEmail = req.body.employerEmail
+//    let artistEmail = req.body.artistEmail
+//    User.update(
+//      {email: employerEmail},
+//      {$push: {invitedArtists: artistEmail}}
+//    )
+//  })
 
-//router.post("/artist-inbox", isLogged, (req,res,next) => {
-//  if (!req.user) {
-//    res.redirect("/login")
-//  }
-//  if (req.user.role === "Employer") {
-//    Invitation.create({ ...req.body })
-//    .then(invitation => {
-//      console.log(invitation)
-//      User.findByIdAndUpdate(    // ESTA MADRE TIENE QUE CREAR LA INVITACIÓN
-//        req.user._id,
-//        {
-//          $push: { invitation: ObjectId(invitation._id)}
-//        },
-//        { new: true }
-//      ).then(user => {
-//        console.log(user)
-//        res.redirect('/view-all')
-//      })
-//    })
-//    .catch(err => next(err))
-//  } else {
-//    res.redirect('/login')
-//  }
-//})
+router.post("/artist-inbox", (req, res, next) => {
+  console.log(req.user);
+  res.send(req.body.id);
+  if (req.user.role === "Employer") {
+    Invitation.create({
+      from: req.user._id,
+      to: req.body.id
+    })
+      .then(invitation => {
+        console.log(invitation);
+        User.findByIdAndUpdate(req.body.id, {
+          $push: { invitation: invitation._id }
+        }).then(user => {
+          console.log(user);
+        });
+      })
+      .catch(err => next(err));
+  }
+});
 
 router.post("/signup", (req, res, next) => {
   console.log(req.body);
@@ -56,8 +55,7 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
-  console.log("login");
-  return res.send({ user: "user" });
+  return res.json({ user: req.user });
 });
 
 router.get("/private", isLogged, (req, res, next) => {
@@ -77,9 +75,9 @@ router.patch("/artist/:id", isLogged, (req, res, next) => {
 });
 
 router.get("/logout", (req, res) => {
-  req.logout()
-  res.json({ message: 'You are logged out' })
-})
+  req.logout();
+  res.json({ message: "You are logged out" });
+});
 
 function isLogged(req, res, next) {
   if (!req.isAuthenticated())

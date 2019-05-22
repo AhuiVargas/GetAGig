@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class ArtistInbox extends Component {
+class ArtistInbox extends Component {
   state = {
     invites: []
   };
@@ -31,3 +31,5 @@ export default class ArtistInbox extends Component {
     );
   }
 }
+
+export default ArtistInbox

@@ -93,7 +93,7 @@ class ArtistSignUp extends Component {
           })(
             <Input
               prefix={<Icon type="link" style={{ color: "rgba(0,0,0,.25)", width: "100%", height:"60" }} />}
-              placeholder="Mixcloud Set Link"
+              placeholder="Media URL"
             />
           )}
         </Form.Item>

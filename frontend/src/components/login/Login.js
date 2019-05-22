@@ -8,7 +8,7 @@ const service = new AuthService()
 class Login extends Component {
   componentWillMount() {
     const user = localStorage.getItem("loggedUser");
-    if (user) return this.props.history.push("/profile");
+    if (user) return this.props.history.push("/login");
   }
   state = {
     form: {

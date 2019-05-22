@@ -5,9 +5,10 @@ class Home extends Component {
   render() {
     return (
       <>
-        <h1>nmms</h1>
-        <Link to="/pre-signup">Signup</Link>
-        <Link to="/login">Login</Link>
+        <h1>Do you have an account with us?</h1>
+        <Link to="/pre-signup">Signup </Link>
+        |
+        <Link to="/login"> Login</Link>
       </>
     );
   }

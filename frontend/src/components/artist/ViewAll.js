@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import { Button, Card } from "antd";
+import toastr from 'toastr'
 
 
 class ViewAll extends Component {
@@ -14,20 +15,20 @@ class ViewAll extends Component {
       .get("http://localhost:3000/get-artists")
       .then(({ data }) => {
         this.setState({ artists: data });
-        console.log(this.state.artists);
+       // console.log(this.state.artists);
       })
       .catch(error => console.log(error));
   }
 
-  sendInvite = musicianEmail => {
-    alert("Artist notified!");
+  sendInvite = id => {
+    
     axios
-      .post("http://localhost:3000/artist-inbox", {
-        bandEmail: this.state.currentUser,
-        musicianEmail
+      .post("http://localhost:3000/artist-inbox", {id}, {
+        withCredentials: true
       })
       .then(res => {
         console.log(res);
+        toastr.success("Artist notified!");
       });
   };
 
@@ -48,7 +49,7 @@ class ViewAll extends Component {
                   playing
                 />
                 <br />
-                <Button onClick={e => this.sendInvite(artist.email)}>
+                <Button onClick={e => this.sendInvite(artist._id)}>
                   Invite
                 </Button>
               </Card>

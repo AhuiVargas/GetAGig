@@ -11,6 +11,7 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("./handlers/passport");
 const cors = require("cors");
+const MongoStore = require('connect-mongo')(session)
 
 mongoose
   .connect("mongodb://localhost/backend", { useNewUrlParser: true })
@@ -30,15 +31,9 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'http://localhost:3001']
+    origin: ['http://localhost:3001']
   })
 )
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
 
 // Middleware Setup
 app.use(logger("dev"));
@@ -54,7 +49,11 @@ app.use(
     secret:'s3cret',
     saveUninitialized: false,
     resave: false,
-    cookie: {maxAge: 1000 * 60 * 60 * 24}
+    cookie: {maxAge: 1000 * 60 * 60 * 24},
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    })
   })
 )
 

@@ -19,11 +19,20 @@ class LayoutThing extends Component {
   };
 
   render() {
+    const style = {
+      //position: 'absolute',
+      zIndex: "-1",
+      width: "100%",
+      height: "130px",
+      color: "white"
+    };
+
     return (
-      <div>
-        <Header>
-          <Particles class="particles" height="500px" width="100%" />
-          <h1>Get a Gig!</h1>
+      <div style={style}>
+        <Header style={style}>
+          <h1 id="logo">Get a Gig!</h1>
+          <Particles class="particles" height="130px" width="100%" />
+
           {/* <Button type="dashed" onClick={this.handleLogout}>
               Logout    PON ESTA MADRE EN OTRO LADO
             </Button> */}

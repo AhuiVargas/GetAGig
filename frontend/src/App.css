@@ -2,6 +2,8 @@
   text-align: center;
 }
 
+
+
 body{
   background-color: #051429;
 }
@@ -25,6 +27,20 @@ body{
 
 .App-link {
   color: #61dafb;
+}
+#logo{
+  position: absolute;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  font-size: 2.3rem;
+  padding-top: 50px;
+}
+
+.ant-layout-header{
+  padding:0 !important;
 }
 
 @keyframes App-logo-spin {

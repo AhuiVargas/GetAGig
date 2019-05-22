@@ -21,9 +21,9 @@ const userSchema = new mongoose.Schema(
     //   gmail: String,
     //   facebook: String
     // },
-    // Invitations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Invitation" }],
     mixcloud: String,
     invitations: Array,
+    // Invitations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Invitation" }],
   },
   {
     timestamps: true,
