@@ -2,9 +2,8 @@ const mongoose = require('mongoose')
 
 const invitationSchema = new mongoose.Schema(
   {
-    artistLiked: String,
-    likedBy: String,
-    description: String,
+    to: String,
+    from: String, //ref user
     contact: String
   }
 )

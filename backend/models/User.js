@@ -17,10 +17,10 @@ const userSchema = new mongoose.Schema(
       enum: ["Artist", "Employer"],
       default: "Artist"
     },
-    social: {
-      gmail: String,
-      facebook: String
-    },
+    // social: {
+    //   gmail: String,
+    //   facebook: String
+    // },
     // Invitations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Invitation" }],
     invitations: Array,
     mixcloud: String,

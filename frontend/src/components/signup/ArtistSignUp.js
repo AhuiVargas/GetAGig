@@ -9,7 +9,7 @@ class ArtistSignUp extends Component {
   state = {
     name: "",
     email: "",
-    role: "Employer",
+    role: "Artist",
     //  picture: '',
     mixcloud: "",
     youtube: "",
@@ -33,17 +33,6 @@ class ArtistSignUp extends Component {
       }
     });
   };
-
-  // getVideoId = (url) => {
-  //   var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  //   var match = url.match(regExp);
-  //
-  //   if (match && match[2].length == 11) {
-  //       return "https://www.youtube.com/embed/" + match[2];
-  //   } else {
-  //       return 'error';
-  //   }
-  // }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -98,16 +87,6 @@ class ArtistSignUp extends Component {
             />
           )}
         </Form.Item>
-        {/* <Form.Item>
-          {getFieldDecorator("youtube", {
-            rules: [{ required: false }]
-          })(
-            <Input
-              prefix={<Icon type="link" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="Youtube Video Link"
-            />
-          )}
-        </Form.Item> */}
         <Form.Item>
           {getFieldDecorator("mixcloud", {
             rules: [{ required: false }]

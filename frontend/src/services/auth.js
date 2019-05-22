@@ -26,20 +26,18 @@ class AuthService {
       });
   };
 
-   logout = () => {
-     localStorage.removeItem('user')
-     return (
-       this.service
-       .get('/logout')
-       .then(response => console.log(response))
-       .catch(err => console.log(err))
-     )
-   } 
+  logout = () => {
+    localStorage.removeItem("user");
+    return this.service
+      .get("/logout")
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+  };
 
- // logout() {
- //   localStorage.clear();
- //   window.location.href = "/";
- // }
+  // logout() {
+  //   localStorage.clear();
+  //   window.location.href = "/";
+  // }
 }
 
 export default AuthService;

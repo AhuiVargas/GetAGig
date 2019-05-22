@@ -7,7 +7,7 @@ import LayoutThing from "./components/layout/Header";
 //import FooterThing from "./components/layout/Footer";
 import Artist from "./components/artist/Artist";
 import Edit from "./components/artist/ArtistEdit";
-import Inbox from "./components/artist/ArtistInbox";
+import ArtistInbox from "./components/artist/ArtistInbox";
 import ViewAll from "./components/artist/ViewAll";
 import PreSignUp from "./components/signup/PreSignUp";
 import ArtistSignUp from "./components/signup/ArtistSignUp"
@@ -25,7 +25,7 @@ const Router = () => (
       <Route exact path="/login" component={Login} />
       <Route path="/profile" component={Artist} />
       <Route path="/artist-edit" component={Edit} />
-      <Route path="/artist-inbox" component={Inbox} />
+      <Route path="/artist-inbox" component={ArtistInbox} />
       <Route path="/view-all" component={ViewAll} />
       <Route component={() => <p>404</p>} />
     </Switch>

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
+import { Button } from 'antd';
+
 
 class ViewAll extends Component {
   state = {
@@ -25,6 +27,7 @@ class ViewAll extends Component {
           
           <h1>{artist.name}</h1> 
           <ReactPlayer url={artist.mixcloud} playing />;
+          <Button>Invite</Button>
           </>
           
           

@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <h1>Laaaaanding</h1>
+        <h1>no me juzguen, si acabo</h1>
         <Link to="/pre-signup">Signup</Link>
         <Link to="/login">Login</Link>
       </>

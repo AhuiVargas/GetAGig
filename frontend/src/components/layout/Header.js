@@ -3,6 +3,8 @@ import { Layout, Menu, Button } from "antd";
 import { withRouter } from "react-router-dom";
 import toastr from 'toastr'
 import AuthService from "../../services/auth";
+import Particles from 'react-particles-js';
+
 
 const service = new AuthService()
 
@@ -13,9 +15,9 @@ class LayoutThing extends Component {
     service
     .logout()
     .then(res => {
-      window.localStorage.clear();
+      localStorage.clear();
       toastr.success("Logged out");
-      this.props.history.push("/login");
+      this.props.history.push("/");
     });
   };
 
@@ -24,6 +26,10 @@ class LayoutThing extends Component {
       <>
         <Layout className="layout">
           <Header>
+            <Particles 
+            height="100px"
+            width="100%"
+             />
             <div className="logo" />
             <Menu
               theme="dark"
@@ -32,7 +38,7 @@ class LayoutThing extends Component {
               style={{ lineHeight: "64px" }}
       
             />
-            <Button type="primary" href="/">
+            <Button type="primary" onClick={this.handleLogout}>
               Logout
             </Button>
           </Header>
