@@ -34,10 +34,15 @@ class AuthService {
       .catch(err => console.log(err));
   };
 
-  // logout() {
-  //   localStorage.clear();
-  //   window.location.href = "/";
-  // }
+  invitation = (userInfo) => {
+    return this.service
+    .post('/artist-inbox', userInfo)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.log(err))
+  }
+
 }
 
 export default AuthService;

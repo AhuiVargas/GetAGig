@@ -13,14 +13,14 @@ router.get("/get-artists", (req, res, next) => {
     .catch(err => res.status(500).json(err));
 });
 
-// router.post('/artist-inbox', (req, res) => {
-//   let employerEmail = req.body.employerEmail
-//   let artistEmail = req.body.artistEmail
-//   User.update(
-//     {email: employerEmail},
-//     {$push: {invitedArtists: artistEmail}}
-//   )
-// })
+ router.post('/artist-inbox', (req, res) => {
+   let employerEmail = req.body.employerEmail
+   let artistEmail = req.body.artistEmail
+   User.update(
+     {email: employerEmail},
+     {$push: {invitedArtists: artistEmail}}
+   )
+ })
 
 
 //router.post("/artist-inbox", isLogged, (req,res,next) => {

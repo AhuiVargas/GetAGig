@@ -22,9 +22,8 @@ const userSchema = new mongoose.Schema(
     //   facebook: String
     // },
     // Invitations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Invitation" }],
-    invitations: Array,
     mixcloud: String,
-    youtube: String
+    invitations: Array,
   },
   {
     timestamps: true,

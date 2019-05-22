@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
-import { Button } from 'antd';
+import { Button, Card } from "antd";
 
 
 class ViewAll extends Component {
@@ -19,22 +19,42 @@ class ViewAll extends Component {
       .catch(error => console.log(error));
   }
 
+  sendInvite = musicianEmail => {
+    alert("Artist notified!");
+    axios
+      .post("http://localhost:3000/artist-inbox", {
+        bandEmail: this.state.currentUser,
+        musicianEmail
+      })
+      .then(res => {
+        console.log(res);
+      });
+  };
+
+
+
   render() {
     return (
       <div>
         {this.state.artists.map((artist, i) => {
-          return  <>
-          
-          <h1>{artist.name}</h1> 
-          <ReactPlayer url={artist.mixcloud} playing />;
-          <Button>Invite</Button>
-          </>
-          
-          
+          return (
+            <>
+              <Card  style={{ padding: 0 }}>
+              <h1>{artist.name}</h1>
+                <ReactPlayer
+                  width="398px"
+                  height="200px"
+                  url={artist.mixcloud}
+                  playing
+                />
+                <br />
+                <Button onClick={e => this.sendInvite(artist.email)}>
+                  Invite
+                </Button>
+              </Card>
+            </>
+          );
         })}
-
-        <div>
-        </div>
       </div>
     );
   }
