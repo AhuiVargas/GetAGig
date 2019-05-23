@@ -18,7 +18,7 @@ class AuthService {
     return this.service
       .post("/login", form)
       .then(response => {
-        console.log(response, "wtf");
+        //console.log(response, "wtf");
         return response;
       })
       .catch(err => {

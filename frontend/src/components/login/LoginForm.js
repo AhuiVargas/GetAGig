@@ -47,7 +47,7 @@ class NormalLoginForm extends React.Component {
           {getFieldDecorator("remember", {
             valuePropName: "checked",
             initialValue: false
-          })(<Checkbox>Remember me</Checkbox>)}
+          })(<Checkbox style={{color:'white'}}>Remember me</Checkbox>)}
         </Form.Item>
       </Form>
     );

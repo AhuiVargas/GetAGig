@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import AuthService from "../../services/auth";
-import { Button, Card } from "antd";
+import { Button, Card, Pagination } from "antd";
 import { Link } from "react-router-dom";
 import toastr from "toastr";
 
@@ -56,31 +56,37 @@ class ViewAll extends Component {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  width: '100%'
+                  width: "100%"
                 }}
               >
                 <h2>{artist.name}</h2>
                 <ReactPlayer
+                 // playing="false"
                   width="20rem"
                   height="10rem"
                   url={artist.mixcloud}
-                  playing
                 />
                 <br />
-                <Button type="dashed" onClick={e => this.sendInvite(artist._id)}>
+                <Button
+                  type="dashed"
+                  onClick={e => this.sendInvite(artist._id)}
+                >
                   Invite
                 </Button>
-                <br/>
+                <br />
               </Card>
             </>
           );
         })}
+        <br />
         <Button type="primary" onClick={this.handleLogout}>
           Logout
         </Button>
         <Button type="primary">
           <Link to="/artist-inbox">My Invites</Link>
         </Button>
+        <br />
+        <Pagination defaultCurrent={1} total={50} />
       </div>
     );
   }

@@ -36,7 +36,7 @@ class EmployerSignUp extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <h3>Register as a Recruiter</h3>
+        <h3 style={{color:'white'}}>Register as a Recruiter</h3>
         <Form.Item>
           {getFieldDecorator("email", {
             rules: [{ required: true, message: "Please input your email!" }]

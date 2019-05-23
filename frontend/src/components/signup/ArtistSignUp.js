@@ -39,7 +39,7 @@ class ArtistSignUp extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <h3>Register as an artist</h3>
+        <h3 style={{color:'white'}}>Register as an artist</h3>
         <Form.Item>
           {getFieldDecorator("email", {
             rules: [{ required: true, message: "Please input your email!" }]
@@ -99,7 +99,7 @@ class ArtistSignUp extends Component {
           )}
         </Form.Item>
         <Form.Item>
-          <h3>I am a: </h3>
+          <h3 style={{color:'white'}}>I am a: </h3>
           {getFieldDecorator("tag", {
             rules: [{ required: false, message: "Please input your email!" }]
           })(
