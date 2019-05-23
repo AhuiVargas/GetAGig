@@ -3,8 +3,11 @@ const router = express.Router();
 const User = require("../models/User");
 const passport = require("../handlers/passport");
 const Invitation = require("../models/Invitation");
+const path = require('path')
 
 const { ObjectId } = require("mongoose").Types;
+
+
 
 router.get("/get-artists", (req, res, next) => {
   User.find({ role: "Artist" })
@@ -14,6 +17,7 @@ router.get("/get-artists", (req, res, next) => {
 
 router.get("/artist-inbox", isLogged, (req, res, next) => {
   Invitation.find({ to: req.user._id })
+  .populate('from')
     .then(invites => res.json(invites))
     .catch(err => next(err));
 });

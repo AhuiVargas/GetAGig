@@ -14,7 +14,7 @@ const cors = require("cors");
 const MongoStore = require('connect-mongo')(session)
 
 mongoose
-  .connect("mongodb://localhost/backend", { useNewUrlParser: true })
+  .connect(process.env.DB, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -31,7 +31,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3001']
+    origin: ['http://localhost:3001', process.env.prodURL ]
   })
 )
 
@@ -42,7 +42,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 app.use(
   session({
@@ -63,5 +62,6 @@ app.use(passport.session())
 
 const index = require("./routes/index");
 app.use("/", index);
+
 
 module.exports = app;
