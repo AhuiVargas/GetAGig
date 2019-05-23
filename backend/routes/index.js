@@ -12,8 +12,8 @@ router.get("/get-artists", (req, res, next) => {
     .catch(err => res.status(500).json(err));
 });
 
-router.get("/artist-inbox", (req, res, next) => {
-  Invitation.find(req.user._id)
+router.get("/artist-inbox", isLogged, (req, res, next) => {
+  Invitation.find({ to: req.user._id })
     .then(invites => res.json(invites))
     .catch(err => next(err));
 });

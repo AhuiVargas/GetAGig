@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Button, Card } from 'antd'
 
 class ArtistInbox extends Component {
   state = {
@@ -8,7 +9,7 @@ class ArtistInbox extends Component {
 
   componentDidMount() {
     axios
-    .get("http://localhost:3000/artist-inbox")
+    .get("http://localhost:3000/artist-inbox",{withCredentials: true})
     .then(({ data }) => {
       this.setState({ invites: data })
       console.log(this.state.invites)
