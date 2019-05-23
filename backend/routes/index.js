@@ -15,8 +15,12 @@ router.get("/get-artists", (req, res, next) => {
 
 router.get("/artist-inbox", isLogged, (req, res, next) => {
   Invitation.find({ to: req.user._id })
-    .populate("from", "to")
-    .then(invites => res.json(invites))
+    .populate("from")
+    .populate("to")
+    .then(invites => {
+      console.log(invites)
+      res.json(invites)
+    })
     .catch(err => next(err));
 });
 

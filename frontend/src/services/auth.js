@@ -1,6 +1,6 @@
 import axios from "axios";
 const baseURL = "https://getagig.herokuapp.com/";
-
+// baseURL = "http://localhost:3000/";
 class AuthService {
   constructor() {
     this.service = axios.create({
