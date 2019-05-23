@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button, Card } from 'antd'
+//import { Button, Card } from 'antd'
 
 class ArtistInbox extends Component {
   state = {
@@ -9,7 +9,7 @@ class ArtistInbox extends Component {
 
   componentDidMount() {
     axios
-    .get("http://localhost:3000/artist-inbox",{withCredentials: true})
+    .get("https://getagig.herokuapp.com/artist-inbox",{withCredentials: true})
     .then(({ data }) => {
       this.setState({ invites: data })
       console.log(this.state.invites)
@@ -21,10 +21,10 @@ class ArtistInbox extends Component {
   render() {
     return (
       <div>
-        {this.state.invites.map(employer => {
+        {this.state.invites.map((invite, i) => {
           return (
             <div>
-              <p>{employer.name}</p>
+              <p>{invite.from}</p>
             </div>
           );
         })}

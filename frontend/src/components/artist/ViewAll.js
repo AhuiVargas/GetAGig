@@ -12,7 +12,7 @@ class ViewAll extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3000/get-artists")
+      .get("https://getagig.herokuapp.com/get-artists")
       .then(({ data }) => {
         this.setState({ artists: data });
        // console.log(this.state.artists);
@@ -23,12 +23,12 @@ class ViewAll extends Component {
   sendInvite = id => {
     
     axios
-      .post("http://localhost:3000/artist-inbox", {id}, {
+      .post("https://getagig.herokuapp.com/artist-inbox", {id}, {
         withCredentials: true
       })
       .then(res => {
         console.log(res);
-        toastr.success("Artist notified!");
+        toastr.success("Invitation sent!");
       });
   };
 
@@ -40,7 +40,7 @@ class ViewAll extends Component {
         {this.state.artists.map((artist, i) => {
           return (
             <>
-              <Card  style={{ padding: 0 }}>
+              <Card  style={{ padding: 0, display: 'flex', justifyContent: 'center' }}>
               <h1>{artist.name}</h1>
                 <ReactPlayer
                   width="398px"
