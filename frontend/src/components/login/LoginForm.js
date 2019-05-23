@@ -8,7 +8,7 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log(values)
+        //console.log(values)
         this.props.handleSubmit(values)
         return this.props.history.push('/view-all')
       }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AuthService from "../../services/auth";
 import toastr from "toastr";
 import { Form, Icon, Input, Button } from "antd";
+import {withRouter} from 'react-router-dom'
 
 const service = new AuthService();
 
@@ -10,7 +11,6 @@ class EmployerSignUp extends Component {
     name: "",
     email: "",
     role: "Employer",
-    //  picture: '',
   };
 
   handleSubmit = e => {
@@ -22,6 +22,7 @@ class EmployerSignUp extends Component {
           .then(response => {
             //console.log(response);
             toastr.success("Artist created");
+            return this.props.history.push('/login')
           })
           .catch(err => {
             console.log(err);
@@ -100,4 +101,4 @@ class EmployerSignUp extends Component {
 
 const WrappedEmployerSignUp = Form.create({ name: "normal_login" })(EmployerSignUp);
 
-export default WrappedEmployerSignUp;
+export default withRouter(WrappedEmployerSignUp);

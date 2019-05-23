@@ -9,15 +9,16 @@ class ArtistInbox extends Component {
 
   componentDidMount() {
     axios
-    .get("https://getagig.herokuapp.com/artist-inbox",{withCredentials: true})
-    .then(({ data }) => {
-      this.setState({ invites: data })
-      console.log(this.state.invites)
-    })
-    .catch(error => console.log(error))
- }
+      .get("https://getagig.herokuapp.com/artist-inbox", {
+        withCredentials: true
+      })
+      .then(({ data }) => {
+        this.setState({ invites: data }).populate("from", "to");
+        console.log(this.state.invites);
+      })
+      .catch(error => console.log(error));
+  }
 
- 
   render() {
     return (
       <div>
@@ -33,4 +34,4 @@ class ArtistInbox extends Component {
   }
 }
 
-export default ArtistInbox
+export default ArtistInbox;

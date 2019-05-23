@@ -3,11 +3,9 @@ const router = express.Router();
 const User = require("../models/User");
 const passport = require("../handlers/passport");
 const Invitation = require("../models/Invitation");
-const path = require('path')
+const path = require("path");
 
 const { ObjectId } = require("mongoose").Types;
-
-
 
 router.get("/get-artists", (req, res, next) => {
   User.find({ role: "Artist" })
@@ -17,19 +15,10 @@ router.get("/get-artists", (req, res, next) => {
 
 router.get("/artist-inbox", isLogged, (req, res, next) => {
   Invitation.find({ to: req.user._id })
-  .populate('from')
+    .populate("from", "to")
     .then(invites => res.json(invites))
     .catch(err => next(err));
 });
-
-//  router.post('/artist-inbox', (req, res) => {
-//    let employerEmail = req.body.employerEmail
-//    let artistEmail = req.body.artistEmail
-//    User.update(
-//      {email: employerEmail},
-//      {$push: {invitedArtists: artistEmail}}
-//    )
-//  })
 
 router.post("/artist-inbox", (req, res, next) => {
   console.log(req.user);

@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 class Home extends Component {
   render() {
     return (
-      <>
-        <h1>Do you have an account with us?</h1>
+      <div >
+        <h1 style={{color: 'white'}}>Do you have an account with us?</h1>
         <Link to="/pre-signup">Signup </Link>
         |
         <Link to="/login"> Login</Link>
-      </>
+      </div>
     );
   }
 }

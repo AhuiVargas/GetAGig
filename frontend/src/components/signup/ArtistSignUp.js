@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import AuthService from "../../services/auth";
 import toastr from "toastr";
 import { Form, Icon, Input, Button, Select } from "antd";
+import {withRouter} from 'react-router-dom'
+
 
 const service = new AuthService();
 
@@ -10,9 +12,7 @@ class ArtistSignUp extends Component {
     name: "",
     email: "",
     role: "Artist",
-    //  picture: '',
     mixcloud: "",
-    youtube: "",
     tag: ""
   };
 
@@ -25,6 +25,7 @@ class ArtistSignUp extends Component {
           .then(response => {
             //console.log(response);
             toastr.success("Artist created");
+            return this.props.history.push('/login')
           })
           .catch(err => {
             console.log(err);
@@ -124,4 +125,4 @@ class ArtistSignUp extends Component {
 
 const WrappedArtistSignUp = Form.create({ name: "normal_login" })(ArtistSignUp);
 
-export default WrappedArtistSignUp;
+export default withRouter(WrappedArtistSignUp);
